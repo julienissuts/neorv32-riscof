@@ -13,6 +13,10 @@ import riscof.utils as utils
 import riscof.constants as constants
 from riscof.pluginTemplate import pluginTemplate
 
+#import from Julien
+import pdb
+
+
 logger = logging.getLogger()
 
 class neorv32(pluginTemplate):
@@ -20,7 +24,11 @@ class neorv32(pluginTemplate):
     __version__ = "latest"
 
     def __init__(self, *args, **kwargs):
+       # pdb.set_trace()#debug 
+
         sclass = super().__init__(*args, **kwargs)
+
+        
 
         config = kwargs.get('config')
 
@@ -61,11 +69,13 @@ class neorv32(pluginTemplate):
         return sclass
 
     def initialise(self, suite, work_dir, archtest_env):
-
+        
+      # pdb.set_trace()#debug 
        # capture the working directory. Any artifacts that the DUT creates should be placed in this
        # directory. Other artifacts from the framework and the Reference plugin will also be placed
        # here itself.
        self.work_dir = work_dir
+       
 
        # capture the architectural test-suite directory.
        self.suite_dir = suite
@@ -85,6 +95,8 @@ class neorv32(pluginTemplate):
        utils.shellCommand(execute).run()
 
     def build(self, isa_yaml, platform_yaml):
+
+     # pdb.set_trace()#debug 
 
       # load the isa yaml as a dictionary in python.
       ispec = utils.load_yaml(isa_yaml)['hart0']
@@ -123,7 +135,8 @@ class neorv32(pluginTemplate):
       self.compile_cmd = self.compile_cmd+neorv32_override
 
     def runTests(self, testList):
-
+     # pdb.set_trace()#debug 
+      
       # we will iterate over each entry in the testList. Each entry node will be referred to by the
       # variable testname.
       for testname in testList:
